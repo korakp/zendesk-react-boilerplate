@@ -13,5 +13,8 @@
 ## To build a production build:
 `npm run build`
 
+## To create a zip package for upload:
+`npm run package`
+
 ## To run the test suite:
 `npm run test`
