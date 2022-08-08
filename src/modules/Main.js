@@ -8,17 +8,17 @@ export default function Main({ data }) {
 }
 
 function View({ className, data }) {
-  const { ticketId, ticketSubject } = data;
+  const { userId, userName} = data;
 
   return (
     <div className={className}>
       <Grid>
         <Row>
           <Col>
-            <MD>Ticked ID: {ticketId}</MD>
+            <MD>User ID: {userId}</MD>
           </Col>
           <Col>
-            <MD>Ticked Subject: {ticketSubject}</MD>
+            <MD>User Name: {userName}</MD>
           </Col>
         </Row>
       </Grid>

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import {ThemeProvider} from '@zendeskgarden/react-theming';
 import {GlobalContextProvider} from '../context/Global';
 import {DEFAULT_LOCALE} from '../lib/constants';
-import I18n from '../lib/i18n';
 import ErrorBoundary from './ErrorBoundary';
 import Main from './Main';
 import {Theme} from './Theme';
@@ -17,41 +16,33 @@ class App {
 
 		// this.initializePromise is only used in testing
 		// indicates app initilization(including all async operations) is complete
-		this.initializePromise = this._initTicketSidebar();
+		this.initializePromise = this._initUserSidebar();
 	}
 
 
-	async _initTicketSidebar() {
-		let currentUser = null;
-		let ticketSubject = '';
+	async _initUserSidebar() {
+		let currentUserId = null;
+		let currentUserName = null;
 
 		try {
-			const [user, subject] = await Promise.all([
-				this._client.get('currentUser'),
-				this._client.get('ticket.subject')
+			const [user] = await Promise.all([
+				this._client.get('currentUser')
 			]);
 
-			currentUser = user.currentUser;
-			ticketSubject = subject['ticket.subject'];
+			currentUserId = user.currentUser.id;
+			currentUserName = user.currentUser.name;
 		} catch (e) {
 			this._handleError.call(this, e);
 		}
 
-		const locale = currentUser ? currentUser.locale : DEFAULT_LOCALE;
-
-		this.states.currentUser = currentUser;
-		this.states.locale = locale;
-		this.states.ticketSubject = ticketSubject;
-
-		this.states.ticketId = this._appData.context.ticketId;
-
-		I18n.loadTranslations(locale);
+		this.states.userId = currentUserId;
+		this.states.userName = currentUserName;
 
 		ReactDOM.render(
 			<StrictMode>
 				<ErrorBoundary>
 					<GlobalContextProvider
-						value={{ticketSidebar: this._client}}
+						value={{UserSidebar: this._client}}
 					>
 						<ThemeProvider theme={Theme}>
 							<Main data={this.states} />
@@ -77,12 +68,12 @@ class App {
 	}
 
 
-	_renderTicketSideBar() {
+	_renderUserSideBar() {
 		ReactDOM.render(
 			<StrictMode>
 				<ErrorBoundary>
 					<GlobalContextProvider
-						value={{ticketSidebar: this._client}}
+						value={{UserSidebar: this._client}}
 					>
 						<ThemeProvider theme={Theme}>
 							<Main data={this.states} />

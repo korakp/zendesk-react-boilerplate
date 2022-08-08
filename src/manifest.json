@@ -1,13 +1,14 @@
 {
 	"author": {
-		"name": "Eric Nelson",
-		"url": "https://github.com/eric-at-zd"
+		"name": "Korak",
+		"url": "https://github.com/korakp",
+		"email": "kpurkayastha@confluent.io"
 	},
 	"defaultLocale": "en",
 	"frameworkVersion": "2.0",
 	"location": {
 		"support": {
-			"ticket_sidebar": {
+			"user_sidebar": {
 				"size": {
 					"height": "500px",
 					"width": "100%"

@@ -32,7 +32,7 @@ const externalAssets = {
 
 module.exports = {
 	entry: {
-		app: ['./src/locations/ticket_sidebar.js', './src/index.css']
+		app: ['./src/locations/user_sidebar.js', './src/index.css']
 	},
 	output: {
 		filename: '[name].js',

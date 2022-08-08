@@ -3,7 +3,7 @@ export const APP_DATA = {
 		account: { subdomain: 'SampleSubdomain' },
 		host: 'zendesk',
 		instanceGuid: 'instance-guid',
-		location: 'ticket_sidebar',
+		location: 'user_sidebar',
 		product: 'support',
 		ticketId: 123456,
 	},
